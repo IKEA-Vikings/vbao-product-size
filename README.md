@@ -45,14 +45,14 @@ npm install
 API               | Description
 ------------------|----------------------------------------------
 **Functionality** | Retrieves product's sizes.
-**Endpoint/Path** | `/sizes/:id`
+**Endpoint/Path** | `api/sizes/:id`
 **Verb**          | GET
 
 ### Request/Response
 
 ```javascript
 /* Sample Request */
-$.get('/sizes/1', (data) => { ... });
+$.get('api/sizes/1', (data) => { ... });
 
 /* Sample Response */
 {
