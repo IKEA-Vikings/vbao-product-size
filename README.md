@@ -1,6 +1,6 @@
 # Vikea
 
-> A mock-up of Ikea's item details page. This repo is a module of the "Similar Products" section.
+> A mock-up of Ikea's item details page. This repo is a module of the "Product Size" section.
 
 ## Related Projects
 
@@ -16,6 +16,7 @@
 1. [Development](#development)
 1. [API](#api)
 1. [Database](#database)
+1. [Measurements](#measurements)
 
 ## Usage
 
@@ -43,44 +44,95 @@ npm install
 
 API               | Description
 ------------------|----------------------------------------------
-**Functionality** | Retrieves product's category and subcategory.
-**Endpoint/Path** | `/type/:id`
+**Functionality** | Retrieves product's sizes.
+**Endpoint/Path** | `/sizes/:id`
 **Verb**          | GET
 
 ### Request/Response
 
 ```javascript
 /* Sample Request */
-$.get('/type/1', (data) => { ... });
+$.get('/sizes/1', (data) => { ... });
 
 /* Sample Response */
 {
-  id: 1,
-  category: 'Lighting',
-  subcategory: 'Lamp Shades'
+  _id: 1,
+  sizes: [
+    {
+      name: 'Height',
+      size: '45',
+      measurement: 'in'
+    },
+    {
+      name: 'Width',
+      size: '25',
+      measurement: 'in'
+    },
+    {
+      name: 'Max. load',
+      size: '200',
+      measurement: 'lb'
+    }
+  ]
 }
 ```
 
 ## Database
 
-Schema utilizing mySQL
+Schema utilizing mongoDB via Mongoose
 
-**Table:** product_type
-field       | type | null | key      | default
-------------|------|------|----------|--------
-id          | INT  | NO   | PRIMARY  |
-category    | INT  | YES  | MULTIPLE | NULL
-subcategory | INT  | YES  | MULTIPLE | NULL
+```javascript
+import mongoose from 'mongoose';
+const { Schema } = mongoose;
 
-**Table:** category
-field | type        | null | key     | default
-------|-------------|------|---------|--------
-id    | INT         | NO   | PRIMARY |
-name  | VARCHAR(25) | YES  |         | NULL
+const singleSize = new Schema({
+  name: String,
+  size: String,
+  measurement: String
+});
 
-**Table:** subcategory
-field    | type        | null | key      | default
----------|-------------|------|----------|--------
-id       | INT         | NO   | PRIMARY  |
-name     | VARCHAR(25) | YES  |          | NULL
-category | ID          | YES  | MULTIPLE | NULL
+const productSizes = new Schema({
+  sizes: {
+    type: [singleSize],
+    default: undefined
+  }
+});
+```
+
+### Measurements
+
+A list of expected measurement conventions.
+
+**Example of default size names:**
+
+- height
+- width
+- diameter
+- length
+- depth
+- thickness
+- filling weight
+- thread count
+- cord length
+- max. load
+- height of a drawer (inside)
+- drawer width (inside)
+- drawer depth (inside)
+- headboard height
+- footboard height
+- mattress length
+- mattress width
+
+**Example of custom size names:**
+
+- max. load/shelf
+- max. load/bed height
+- height under loft bed
+
+**Example of default measurements:**
+
+- in
+- ft
+- /inch2
+- lb
+- oz
