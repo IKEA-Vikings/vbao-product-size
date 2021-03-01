@@ -61,17 +61,17 @@ $.get('api/sizes/1', (data) => { ... });
     {
       name: 'Height',
       size: '45',
-      measurement: 'in'
+      unit: 'in'
     },
     {
       name: 'Width',
       size: '25',
-      measurement: 'in'
+      unit: 'in'
     },
     {
       name: 'Max. load',
       size: '200',
-      measurement: 'lb'
+      unit: 'lb'
     }
   ]
 }
@@ -88,7 +88,7 @@ const { Schema } = mongoose;
 const singleSize = new Schema({
   name: String,
   size: String,
-  measurement: String
+  unit: String
 });
 
 const productSizes = new Schema({
