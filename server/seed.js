@@ -5,7 +5,7 @@ const ProductSizes = db.productSizes;
 
 /* Data Generation */
 let data = [];
-const random = (max) => Math.floor(Math.random() * Math.floor(max);
+const random = (max) => Math.floor(Math.random() * Math.floor(max));
 const sizeType = [
   ['length', 'in'],
   ['width', 'in'],
