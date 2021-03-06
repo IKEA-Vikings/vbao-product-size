@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const { Schema } = mongoose.Schema;
+const Schema = mongoose.Schema;
 
 mongoose.connect('mongodb://localhost/ikea', {useNewUrlParser: true, useUnifiedTopology: true});
 
@@ -22,14 +22,14 @@ const productSizesSchema = new Schema({
 const singleSize = mongoose.model('singleSize', singleSizeSchema);
 const productSizes = mongoose.model('productSizes', productSizesSchema);
 
-function setProductSizes(documents, callback) => {
+function setProductSizes(documents, callback) {
   productSizes.insertMany(documents, (err, docs) => {
     if (err) { return callback(err);}
     callback(null, docs);
   });
 }
 
-function getProductSizes(documents, callback) => {
+function getProductSizes(documents, callback) {
   productSizes.find({}, (err, docs) => {
     if (err) { return callback(err);}
     callback(null, docs);
