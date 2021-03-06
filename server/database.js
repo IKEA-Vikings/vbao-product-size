@@ -38,5 +38,6 @@ function getProductSizes(documents, callback) => {
 
 module.exports = {
   setProductSizes,
-  getProductSizes
+  getProductSizes,
+  productSizes
 };
