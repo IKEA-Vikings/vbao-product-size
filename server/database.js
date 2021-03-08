@@ -29,7 +29,7 @@ function setProductSizes(documents, callback) {
   });
 }
 
-function getProductSizes(documents, callback) {
+function getProductSizes(callback) {
   productSizes.find({}, (err, docs) => {
     if (err) { return callback(err);}
     callback(null, docs);
