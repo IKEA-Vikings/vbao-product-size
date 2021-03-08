@@ -13,6 +13,7 @@ const singleSizeSchema = new Schema({
 });
 
 const productSizesSchema = new Schema({
+  id: Number,
   sizes: {
     type: [singleSizeSchema],
     default: undefined
@@ -36,8 +37,16 @@ function getProductSizes(callback) {
   });
 }
 
+function getProductSize(id, callback) {
+  productSizes.find({id: id}, (err, docs) => {
+    if (err) { return callback(err);}
+    return callback(null, docs);
+  });
+}
+
 module.exports = {
   setProductSizes,
   getProductSizes,
+  getProductSize,
   productSizes
 };
