@@ -22,7 +22,8 @@
   },
   "scripts": {
     "seed": "node ./server/seed.js",
-    "test": "jest --no-cache"
+    "test": "jest --no-cache",
+    "start": "nodemon server.js"
   },
   "devDependencies": {
     "@babel/core": "^7.13.8",
