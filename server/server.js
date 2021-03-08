@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const Promise = require('bluebird');
-const db = Promise.promisifiyAll(require('./database'));
+const db = Promise.promisifyAll(require('./database'));
 const PORT = 3000;
 
 app.use(express.static('./public'))
@@ -13,7 +13,7 @@ app.get('/api/:id', (req, res) => {
       console.log(res);
       res.send('OK');
     })
-    .catch();
+    .catch((err) => console.error(err));
 });
 
-app.listen(PORT, `Listening on http://localhost:${PORT}`);
+app.listen(PORT, console.log(`Listening on http://localhost:${PORT}`));
