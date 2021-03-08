@@ -6,6 +6,7 @@ const ProductSizes = db.productSizes;
 /* Data Generation */
 const generateData = () => {
   let data = [];
+  let id = 1;
   const random = (max) => Math.floor(Math.random() * Math.floor(max));
   const sizeType = [
     ['length', 'in'],
@@ -34,6 +35,8 @@ const generateData = () => {
       document.sizes.push(temp);
     }
     //push document to data
+    document.id = id;
+    id++;
     data.push(document);
   }
 
