@@ -10,6 +10,7 @@ let collection = 'productSizes';
  */
 const generateData = () => {
   let data = [];
+  let id = 1;
   const random = (max) => Math.floor(Math.random() * Math.floor(max));
   const sizeType = [
     ['length', 'in'],
@@ -38,6 +39,8 @@ const generateData = () => {
       document.sizes.push(temp);
     }
     //push document to data
+    document.id = id;
+    id++;
     data.push(document);
   }
 
@@ -51,6 +54,7 @@ const singleSizeSchema = new Schema({
 });
 
 const productSizesSchema = new Schema({
+  id: Number,
   sizes: {
     type: [singleSizeSchema],
     default: undefined
@@ -69,6 +73,13 @@ function setProductSizes(documents, callback) {
 
 function getProductSizes(callback) {
   productSizes.find({}, (err, docs) => {
+    if (err) { return callback(err);}
+    return callback(null, docs);
+  });
+}
+
+function getProductSize(id, callback) {
+  productSizes.find({id: id}, (err, docs) => {
     if (err) { return callback(err);}
     return callback(null, docs);
   });
