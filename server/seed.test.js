@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const Promise = require('bluebird');
 
 let db, connection;
 let collection = 'productSizes';
@@ -62,16 +63,19 @@ const productSizes = mongoose.model('productSizes', productSizesSchema);
 function setProductSizes(documents, callback) {
   productSizes.insertMany(documents, (err, docs) => {
     if (err) { return callback(err);}
-    callback(null, docs);
+    return callback(null, docs);
   });
 }
 
 function getProductSizes(callback) {
   productSizes.find({}, (err, docs) => {
     if (err) { return callback(err);}
-    callback(null, docs);
+    return callback(null, docs);
   });
 }
+
+const setProductSizesAsync = Promise.promisify(setProductSizes);
+const getProductSizesAsync = Promise.promisify(getProductSizes);
 
 beforeAll(async (done) => {
   connection = await mongoose.connect('mongodb://localhost:27017/test', {useNewUrlParser: true, useUnifiedTopology: true });
@@ -91,14 +95,25 @@ afterAll(async (done) => {
 describe('Seeding script', () => {
   test('Seeding script seeds 100 documents', async () => {
     let seed = generateData();
-    let data = [];
+    let data;
 
     try {
-      await setProductSizes(seed, (err, res) => res);
-      data = await getProductSizes((err, res) => console.log('products: ', res));
-      console.log(data);
-
-      expect(data.length).toBe(100);
+      await setProductSizesAsync(seed);
+      data = await getProductSizesAsync();
     } catch(err) { console.error(err); }
+
+    expect(data.length).toBe(100);
+  });
+
+  test('Seeds are not the same data', async () => {
+    let seed = generateData();
+    let data;
+
+    try {
+      await setProductSizesAsync(seed);
+      data = await getProductSizesAsync();
+    } catch(err) { console.error(err); }
+
+    expect(JSON.stringify(data[0])).not.toEqual(JSON.stringify(data[1]));
   });
 });
