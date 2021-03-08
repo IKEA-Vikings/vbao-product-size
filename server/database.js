@@ -25,14 +25,14 @@ const productSizes = mongoose.model('productSizes', productSizesSchema);
 function setProductSizes(documents, callback) {
   productSizes.insertMany(documents, (err, docs) => {
     if (err) { return callback(err);}
-    callback(null, docs);
+    return callback(null, docs);
   });
 }
 
 function getProductSizes(callback) {
   productSizes.find({}, (err, docs) => {
     if (err) { return callback(err);}
-    callback(null, docs);
+    return callback(null, docs);
   });
 }
 
