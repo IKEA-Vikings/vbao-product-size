@@ -7,11 +7,10 @@ const PORT = 3000;
 app.use(express.static('./public'))
 
 app.get('/api/:id', (req, res) => {
-  console.log(req);
-  db.getProductSizeAsync(req.param.id)
-    .then((res) => {
-      console.log(res);
-      res.send('OK');
+  console.log(req.params.id);
+  db.getProductSizeAsync(req.params.id)
+    .then((result) => {
+      res.send(result[0].sizes);
     })
     .catch((err) => console.error(err));
 });
