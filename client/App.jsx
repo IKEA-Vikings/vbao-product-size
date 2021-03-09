@@ -1,12 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import axios from 'axios';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      data: []
+    }
   }
 
-  componentDidMount() {}
+  componentDidMount() {
+    axios.get('/api/1')
+      .then((res) => {
+        this.setState(res.data);
+      });
+  }
 
   render() {
     return (<h1>HELLO</h1>);
