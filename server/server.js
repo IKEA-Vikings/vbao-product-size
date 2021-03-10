@@ -6,7 +6,7 @@ const PORT = 3000;
 
 app.use(express.static('./public'))
 
-app.get('/api/:id', (req, res) => {
+app.get('/api/sizes/:id', (req, res) => {
   console.log(req.params.id);
   db.getProductSizeAsync(req.params.id)
     .then((result) => {
