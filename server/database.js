@@ -23,24 +23,24 @@ const productSizesSchema = new Schema({
 const singleSize = mongoose.model('singleSize', singleSizeSchema);
 const productSizes = mongoose.model('productSizes', productSizesSchema);
 
-function setProductSizes(documents) {
+function setProductSizes(documents, callback) {
   productSizes.insertMany(documents, (err, docs) => {
-    if (err) { return err; }
-    return docs;
+    if (err) { return callback(err); }
+    return callback(docs);
   });
 }
 
-function getProductSizes() {
+function getProductSizes(callback) {
   productSizes.find({}, (err, docs) => {
-    if (err) { return err; }
-    return docs;
+    if (err) { return callback(err); }
+    return callback(docs);
   });
 }
 
-function getProductSize(id) {
+function getProductSize(id, callback) {
   productSizes.find({id: id}, (err, docs) => {
-    if (err) { return err; }
-    return docs;
+    if (err) { return callback(err); }
+    return callback(docs);
   });
 }
 
