@@ -1,4 +1,5 @@
 const Promise = require('bluebird');
+const mongoose = require('mongoose');
 
 const db = require('./database.js');
 const seed = Promise.promisify(db.setProductSizes);
@@ -17,3 +18,5 @@ seed(data)
     console.log(results);
   })
   .catch(err => console.error(err));
+
+  mongoose.connection.close();
