@@ -13,7 +13,7 @@ class App extends React.Component {
   componentDidMount() {
     axios.get('/api/sizes/1')
       .then((res) => {
-        this.setState(res.data);
+        this.setState({data: res.data});
       });
   }
 
