@@ -1,11 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-mongoose.connect('mongodb://localhost/ikea', {useNewUrlParser: true, useUnifiedTopology: true});
-
-mongoose.connection.on('error', console.error.bind(console, 'connection error: '));
-mongoose.connection.once('open', () => console.log('Connection successful!'));
-
 const singleSizeSchema = new Schema({
   name: String,
   size: String,
