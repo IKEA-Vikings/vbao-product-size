@@ -21,7 +21,7 @@
     ]
   },
   "scripts": {
-    "seed": "node ./server/seed.js",
+    "seed": "node ./server/database/seed.js",
     "test": "jest --no-cache",
     "start": "nodemon ./server/server.js",
     "build": "webpack --watch"
