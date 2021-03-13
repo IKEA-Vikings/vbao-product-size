@@ -1,10 +1,22 @@
+process.env.NODE_ENV = 'test';
 const request = require('supertest');
 const app = require('../server/app');
+const mongoose = require('mongoose');
+const generateData = require('../server/database/generateSeedData');
+const dbMethods = require('../server/database/database');
+const db = mongoose.connection;
 
 beforeAll(async (done) => {
+  let seed = generateData();
+  try {
+    await dbMethods.setProductSizesAsync(seed);
+  } catch(err) { console.error(err); }
   done();
 });
+
 afterAll(async (done) => {
+  await db.dropDatabase();
+  await db.close();
   done();
 });
 
