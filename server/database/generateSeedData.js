@@ -12,7 +12,7 @@ const generateSeedData = () => {
   ];
 
   for (let id = 1; id <= 100; id++) {
-    let document = { sizes: [] };
+    let document = {};
     let numSizes = random(8);
 
     for (let j = 0; j < numSizes; j++) {
@@ -25,6 +25,9 @@ const generateSeedData = () => {
       //Pick random size, add to temp
       temp['size'] = random(75);
       //Push temp to document[sizes];
+      if (document.sizes === undefined) {
+        document.sizes = [];
+      }
       document.sizes.push(temp);
     }
     //push document to data
