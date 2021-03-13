@@ -26,8 +26,8 @@ const db = {
   },
 
   getProductSize: (id, callback) => {
-    productSizes.find({id: id}, (err, docs) => {
-      if (err) { return callback(err); }
+    productSizes.findOne({id: id}, (err, docs) => {
+      if (err || docs === null) { return callback(err); }
       return callback(null, docs);
     });
   }
