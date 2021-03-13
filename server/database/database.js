@@ -1,10 +1,11 @@
 const Promise = require('bluebird');
 const mongoose = require('mongoose');
-const models = require('./databaseModels.js');
+const models = require('./databaseModels');
+const dbname = process.env.NODE_ENV === 'test' ? 'ikea-test' : 'ikea';
 const productSizes = models.productSizes;
 const singleSize = models.singleSize;
 
-mongoose.connect('mongodb://localhost/ikea', {useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect(`mongodb://localhost/${dbname}`, {useNewUrlParser: true, useUnifiedTopology: true});
 
 mongoose.connection.on('error', console.error.bind(console, 'connection error: '));
 mongoose.connection.once('open', () => console.log('Connection successful!'));

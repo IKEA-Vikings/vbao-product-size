@@ -1,8 +1,9 @@
+process.env.NODE_ENV = 'test';
 const mongoose = require('mongoose');
-const generateData = require('../server/database/generateSeedData.js');
-const dbMethods = require('./mockDatabase.js');
+const generateData = require('../server/database/generateSeedData');
+const dbMethods = require('../server/database/database');
 
-let db = mongoose.connection;
+const db = mongoose.connection;
 
 beforeAll(async (done) => {
   let seed = generateData();
