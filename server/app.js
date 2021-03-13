@@ -7,7 +7,7 @@ app.use(express.static('./public'))
 app.get('/api/sizes/:id', (req, res) => {
   db.getProductSizeAsync(req.params.id)
     .then((result) => {
-      res.send(result[0].sizes);
+      res.send(result[0]);
     })
     .catch((err) => console.error(err));
 });
