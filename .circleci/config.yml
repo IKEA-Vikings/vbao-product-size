@@ -4,4 +4,19 @@ orbs:
 workflows:
   node-tests:
     jobs:
-      - node/test
+      build:
+        steps:
+          - checkout
+          - restore_cache:
+            keys:
+            - v1-dependencies-{{ checksum "package-lock.json" }}
+            - v1-dependencies-
+          - run: npm install
+          - save_cache:
+            paths:
+              - node_modules
+            keys:
+            - v1-dependencies-{{ checksum "package-lock.json" }}
+            - v1-dependencies-
+          - run: npm run build
+          - run: npm run test
