@@ -1,22 +1,32 @@
 version: 2.1
 orbs:
   node: circleci/node@3.0.0
+
+jobs:
+  build:
+    steps:
+      - checkout
+      - restore_cache:
+        keys:
+          - v1-dependencies-{{ checksum "package-lock.json" }}
+          - v1-dependencies-
+      - run: npm install
+      - save_cache:
+        paths:
+          - node_modules
+        keys:
+          - v1-dependencies-{{ checksum "package-lock.json" }}
+          - v1-dependencies-
+      - run: npm run build
+  test:
+    steps:
+      - run: npm run test
+
 workflows:
-  node-tests:
+  version: 2.1
+  build_and_test:
     jobs:
-      build:
-        steps:
-          - checkout
-          - restore_cache:
-            keys:
-            - v1-dependencies-{{ checksum "package-lock.json" }}
-            - v1-dependencies-
-          - run: npm install
-          - save_cache:
-            paths:
-              - node_modules
-            keys:
-            - v1-dependencies-{{ checksum "package-lock.json" }}
-            - v1-dependencies-
-          - run: npm run build
-          - run: npm run test
+      - build
+      - test:
+        requires:
+          - build
