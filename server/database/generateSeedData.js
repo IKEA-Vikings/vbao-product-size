@@ -1,10 +1,4 @@
-const Promise = require('bluebird');
-const db = require('./database.js');
-const seed = Promise.promisify(db.setProductSizes);
-const ProductSizes = db.productSizes;
-
-/* Data Generation */
-const generateData = () => {
+const generateSeedData = () => {
   let data = [];
   const random = (max) => Math.floor(Math.random() * Math.floor(max));
   const sizeType = [
@@ -18,7 +12,7 @@ const generateData = () => {
   ];
 
   for (let id = 1; id <= 100; id++) {
-    let document = { sizes: [] };
+    let document = {};
     let numSizes = random(8);
 
     for (let j = 0; j < numSizes; j++) {
@@ -31,6 +25,9 @@ const generateData = () => {
       //Pick random size, add to temp
       temp['size'] = random(75);
       //Push temp to document[sizes];
+      if (document.sizes === undefined) {
+        document.sizes = [];
+      }
       document.sizes.push(temp);
     }
     //push document to data
@@ -41,11 +38,4 @@ const generateData = () => {
   return data;
 };
 
-/* Data Insertion */
-ProductSizes.deleteMany();
-let data = generateData();
-seed(data)
-  .then((results) => {
-    console.log(results);
-  })
-  .catch(err => console.error(err));
+module.exports = generateSeedData;
