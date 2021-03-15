@@ -1,33 +1,17 @@
 version: 2.1
 orbs:
   node: circleci/node@3.0.0
-
 jobs:
-  build:
-    docker:
-      - image: circleci/node:10
+  test:
+    executor:
+      name: node/default
+      tag: '13.14'
     steps:
       - checkout
-      - restore_cache:
-        keys:
-          - v1-dependencies-{{ checksum "package-lock.json" }}
-          - v1-dependencies-
-      - run: npm install
-      - save_cache:
-        paths:
-          - node_modules
-        keys:
-          - v1-dependencies-{{ checksum "package-lock.json" }}
-          - v1-dependencies-
-      - run: npm run build
-  test:
-    steps:
-      - run: npm run test
-
+      - node/install-packages
+      - run:
+          command: npm run test
 workflows:
-  build_and_test:
+  test_my_app:
     jobs:
-      - build
-      - test:
-        requires:
-          - build
+      - test
