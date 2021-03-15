@@ -4,6 +4,8 @@ orbs:
 
 jobs:
   build:
+    docker:
+      - image: circleci/node:10
     steps:
       - checkout
       - restore_cache:
@@ -23,7 +25,6 @@ jobs:
       - run: npm run test
 
 workflows:
-  version: 2.1
   build_and_test:
     jobs:
       - build
