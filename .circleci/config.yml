@@ -8,6 +8,8 @@ jobs:
       tag: '13.14'
     steps:
       - checkout
+      - run:
+          command: sudo apt-get install -y mongodb
       - node/install-packages
       - run:
           command: npm run test
