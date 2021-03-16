@@ -2,8 +2,21 @@ import React from 'react';
 
 function ProductSizeModal(props) {
   let sizes, image, isHidden;
-  sizes = [];
-  image = "";
+  sizes = !props.sizes
+    ? []
+    : props.sizes.map((size) => {
+      return (
+        <div className="product-dimensions__list-container" key={size.name + size.size + size.unit}>
+          <dt className="product-dimensions__list-item-name">
+            {size.name}
+          </dt>
+          <dd className="product-dimensions__list-item-measure">
+            {size.size} {size.unit}
+          </dd>
+        </div>
+      );
+    });
+  image = props.image;
   isHidden = props.isHidden;
 
   return (
