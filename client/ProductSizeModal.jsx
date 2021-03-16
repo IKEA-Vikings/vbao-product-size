@@ -8,7 +8,7 @@ function ProductSizeModal(props) {
       return (
         <div className="product-dimensions__list-container" key={size.name + size.size + size.unit}>
           <dt className="product-dimensions__list-item-name">
-            {size.name}
+            {size.name}:
           </dt>
           <dd className="product-dimensions__list-item-measure">
             {size.size} {size.unit}
@@ -17,10 +17,12 @@ function ProductSizeModal(props) {
       );
     });
   image = props.image;
-  isHidden = props.isHidden;
+  isHidden = props.isHidden
+    ? "seo-content"
+    : "seo-content unhide";
 
   return (
-    <div className="seo-content">
+    <div className={isHidden}>
       <div className="product-dimensions">
         <h2 className="product-dimensions__title">
           Product Size
