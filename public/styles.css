@@ -72,13 +72,13 @@ button.chunky-header:focus {
   top: 0;
   border-radius: 7px;
   background-color: white;
-  transition: right 0.2s ease;
+  transition: right 0.5s ease;
   font-size: .875rem;
+  padding: 1.5rem;
   z-index: 99;
 }
 
 .seo-content.unhide {
-  padding: 1.5rem;
   right: 0;
   transition: right 0.2s ease;
 }
