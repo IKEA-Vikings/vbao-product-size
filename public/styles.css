@@ -11,6 +11,18 @@
   --font: 'Noto Sans', 'Roboto', 'Open Sans', sans-serif
 }
 
+.overlay {
+  display: none;
+  position: absolute;
+  background-color: var(--overlay);
+  height: 100%;
+  width: 100%;
+}
+
+.overlay.unhide {
+  display: block;
+}
+
 .product-info-section__button {
   font-family: var(--font);
 }
@@ -31,6 +43,10 @@ button.chunky-header {
   color: black;
 }
 
+button.chunky-header:focus {
+  outline:0;
+}
+
 .chunky-header__title-wrapper {
   text-align: left;
 }
@@ -49,3 +65,42 @@ button.chunky-header {
   vertical-align: middle;
 }
 
+.seo-content {
+  position: absolute;
+  height: 100%;
+  right: -100%;
+  top: 0;
+  border-radius: 7px;
+  background-color: white;
+  transition: right 0.2s ease;
+  font-size: .875rem;
+  z-index: 99;
+}
+
+.seo-content.unhide {
+  padding: 1.5rem;
+  right: 0;
+  transition: right 0.2s ease;
+}
+
+.product-dimensions__title {
+  color: black;
+  font-size: 1.125rem;
+}
+
+.product-dimensions__list {
+  color: var(--gray);
+  margin-bottom: .5rem;
+}
+
+.product-dimensions__list-container {
+  display: flex;
+}
+
+.product-dimensions__list-item-name {
+  font-weight: 700;
+}
+
+.product-dimensions__list-item-measure {
+  margin: 2px;
+}
