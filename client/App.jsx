@@ -1,12 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
+import ProductServicesButton from './ProductSizeButton.jsx';
+import ProductServicesModal from './ProductSizeModal.jsx';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
+
+    this.toggleOverlay = this.toggleOverlay.bind(this);
+
     this.state = {
-      data: []
+      data: [],
+      image: null,
+      overlay: "overlay"
     }
   }
 
@@ -15,10 +22,37 @@ class App extends React.Component {
       .then((res) => {
         this.setState({data: res.data});
       });
+
+    axios.get('api/images/type/size/1')
+    .then((res) => {
+      this.setState({image: res.data.sizeService});
+    });
+  }
+
+  toggleOverlay(e) {
+    e.preventDefault();
+    console.log('click');
+    if (this.state.overlay === "overlay") {
+      this.setState({overlay: "overlay unhide"});
+    } else {
+      this.setState({overlay: "overlay"});
+    }
   }
 
   render() {
-    return (<h1>HELLO</h1>);
+    return (
+      <div>
+        <ProductServicesModal
+          sizes={this.state.data.sizes} 
+          image={this.state.image} 
+          isHidden={this.state.overlay === "overlay"}/>
+        <div
+          className={this.state.overlay}
+          onClick={this.toggleOverlay}></div>
+        <ProductServicesButton
+          handleClick={this.toggleOverlay} />
+      </div>
+    );
   }
 }
 
