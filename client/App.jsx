@@ -25,7 +25,7 @@ class App extends React.Component {
       })
       .catch((err) => console.error(err));
 
-    axios.get('api/images/type/size/1')
+    axios.get('http://localhost:3004/api/images/type/size/1')
     .then((res) => {
       this.setState({image: res.data.sizeService});
     })
