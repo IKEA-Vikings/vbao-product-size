@@ -43,7 +43,7 @@ button.chunky-header {
   color: black;
 }
 
-button.chunky-header:focus {
+button.chunky-header:focus, button.close {
   outline:0;
 }
 
@@ -58,7 +58,7 @@ button.chunky-header:focus {
   font-weight: 700;
 }
 
-.svg-icon {
+.svg-icon.chunky-header__icon {
   display: inline-block;
   height: 1.5rem;
   width: 1.5rem;
@@ -81,6 +81,30 @@ button.chunky-header:focus {
 .seo-content.unhide {
   right: 0;
   transition: right 0.2s ease;
+}
+
+.seo-content__modal-header {
+  padding: 1.125rem;
+}
+
+button.close {
+  position: absolute;
+  border-style: none;
+  border-radius: 100px;
+  background-color: white;
+  width: 2.25rem;
+  height: 2.25rem;
+  right: 1.125rem;
+  top: 1.125rem;
+}
+
+button.close:hover {
+  background-color: var(--overlay)
+}
+
+.svg-icon.close {
+  height: 1.125rem;
+  width: 1.125rem;
 }
 
 .product-dimensions__title {

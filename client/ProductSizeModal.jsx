@@ -23,6 +23,16 @@ function ProductSizeModal(props) {
 
   return (
     <div className={isHidden}>
+      <div className="seo-content__modal-header">
+        <button
+          className="close"
+          onClick={props.toggleOverlay} >
+          <svg className="svg-icon close" focusable="false" viewBox="0 0 100 100" >
+            <path d="M5 5 L95 95 Z" stroke="black" stroke-width="10" fill="none" />
+            <path d="M5 95 L95 5 Z" stroke="black" stroke-width="10" fill="none" />
+          </svg>
+        </button>
+      </div>
       <div className="product-dimensions">
         <h2 className="product-dimensions__title">
           Product Size

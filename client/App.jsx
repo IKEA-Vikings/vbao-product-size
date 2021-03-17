@@ -47,7 +47,8 @@ class App extends React.Component {
         <ProductServicesModal
           sizes={this.state.data.sizes} 
           image={this.state.image} 
-          isHidden={this.state.overlay === "overlay"}/>
+          toggleOverlay={this.toggleOverlay}
+          isHidden={this.state.overlay === "overlay"} />
         <div
           className={this.state.overlay}
           onClick={this.toggleOverlay}></div>
