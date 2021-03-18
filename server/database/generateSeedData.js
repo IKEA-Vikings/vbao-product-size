@@ -1,6 +1,7 @@
 const generateSeedData = () => {
   let data = [];
   const random = (min, max) => Math.floor(Math.random() * (max - min) + min);
+  const hasBonus = random(0, 2);
   const sizeSets = [
     [
       ['Length', 'inch'],
@@ -18,38 +19,35 @@ const generateSeedData = () => {
       ['Height', 'inch']
     ]
   ];
-  let hasBonus = random(0, 2);
 
   for (let id = 1; id <= 100; id++) {
     let document = {};
-    let sizeType = random(0, 2);
+    let sizeType = random(-1, 2);
     let sizingGroup = sizeSets[sizeType];
-    let numSizes = sizingGroup.length;
+    let numSizes = sizeType < 0 ? 0 : sizingGroup.length;
 
     for (let j = 0; j < numSizes ; j++) {
-      let temp = {};
-      temp['name'] = sizingGroup[j][0];
-      //Add name and unit to temp
-      temp['unit'] = sizingGroup[j][1];
-      //Pick random size, add to temp
-      temp['size'] = random(5, 150);
-      //Push temp to document[sizes];
-      if (document.sizes === undefined) {
+      let temp = {
+        name: sizingGroup[j][0],
+        unit: sizingGroup[j][1],
+        size: random(5, 150)
+      };
+
+      if (!document.sizes) {
         document.sizes = [];
       }
       document.sizes.push(temp);
     }
 
     // Bonus sizing if exists
-    if (hasBonus && document.sizes !== undefined) {
-      let sizeType = random(0, 2);
-      let sizingGroup = sizeSet[2][sizeType];
-      let temp = {};
-      temp['name'] = sizingGroup[0];
-      //Add name and unit to temp
-      temp['unit'] = sizingGroup[1];
-      //Pick random size, add to temp
-      temp['size'] = random(35, 250);
+    if (hasBonus && document.sizes) {
+      const sizeType = random(0, 2);
+      const sizingGroup = sizeSets[2][sizeType];
+      let temp = {
+        name: sizingGroup[0],
+        unit: sizingGroup[1],
+        size: random(35, 250)
+      };
       document.sizes.push(temp);
     }
 
