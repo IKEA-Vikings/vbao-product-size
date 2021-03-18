@@ -69,7 +69,7 @@ This script will transpile updates made to files within the `./client` folder to
 
 Test scripts will test the database, API, client, and seeding script via Jest and will show coverage of the tests in the terminal.
 
-Prior to running the test be sure the local Mongo server is started. And that the server is started as well.
+Prior to running the test be sure the local Mongo server is started. And that the API server is started as well.
 
 ```sh
 brew services start mongodb-community@4.4
@@ -138,6 +138,8 @@ const singleSize = new Schema({
 });
 
 const productSizes = new Schema({
+  id: Number,
+  title: String,
   sizes: {
     type: [singleSize],
     default: undefined
