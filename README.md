@@ -1,13 +1,13 @@
 # Vikea
 
-> A mock-up of Ikea's item details page. This repo is a module of the "Product Size" section.
+A mock-up of Ikea's item details page. This repo is a module of the "Product Size" section.
 
 ## Related Projects
 
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
+  - https://github.com/IKEA-Vikings/josh-service-reviews
+  - https://github.com/IKEA-Vikings/vbao-others-also-viewed
+  - https://github.com/IKEA-Vikings/phucci-service-1
+  - https://github.com/IKEA-Vikings/kim-service-1
 
 ## Table of Contents
 
@@ -16,18 +16,17 @@
 1. [Development](#development)
 1. [API](#api)
 1. [Database](#database)
-1. [Measurements](#measurements)
 
 ## Usage
 
-> Some usage instructions
+This repo provides front end components for the Product Size module of Ikea's item detail page. Includes API to the product size service.
 
 ## Requirements
 
 An `nvmrc` file is included if using [nvm](https://github.com/creationix/nvm).
 
 - Node 6.13.0
-- etc
+- MongoDB `mongodb-community@4.4`
 
 ## Development
 
@@ -38,6 +37,54 @@ From within the root directory:
 ```sh
 npm install -g webpack
 npm install
+```
+
+### Seed Database
+
+From within the root directory:
+
+```sh
+npm run seed
+```
+
+This script will run a seeding script to insert 100 records into a new Mongo database called `ikea` within a collection called `productsizes`.
+
+Prior to running the seeding script locally, be sure the Mongo server is started.
+
+```sh
+brew services start mongodb-community@4.4
+```
+
+### Transpile React
+
+From within the root directory in its own terminal:
+
+```sh
+npm run build
+```
+
+This script will transpile updates made to files within the `./client` folder to the `./public` folder. This script will continually watch for changes.
+
+### Run Tests
+
+Test scripts will test the database, API, client, and seeding script via Jest and will show coverage of the tests in the terminal.
+
+Prior to running the test be sure the local Mongo server is started. And that the server is started as well.
+
+```sh
+brew services start mongodb-community@4.4
+```
+
+From within the root directory:
+
+```sh
+npm start
+```
+
+In a separate terminal window, from within the root directory:
+
+```sh
+npm run test
 ```
 
 ## API
@@ -56,7 +103,8 @@ $.get('api/sizes/1', (data) => { ... });
 
 /* Sample Response */
 {
-  _id: 1,
+  id: 1,
+  title: '45x25"'
   sizes: [
     {
       name: 'Height',
@@ -82,8 +130,6 @@ $.get('api/sizes/1', (data) => { ... });
 Schema utilizing mongoDB via Mongoose
 
 ```javascript
-import mongoose from 'mongoose';
-const { Schema } = mongoose;
 
 const singleSize = new Schema({
   name: String,
@@ -98,41 +144,3 @@ const productSizes = new Schema({
   }
 });
 ```
-
-### Measurements
-
-A list of expected measurement conventions.
-
-**Example of default size names:**
-
-- height
-- width
-- diameter
-- length
-- depth
-- thickness
-- filling weight
-- thread count
-- cord length
-- max. load
-- height of a drawer (inside)
-- drawer width (inside)
-- drawer depth (inside)
-- headboard height
-- footboard height
-- mattress length
-- mattress width
-
-**Example of custom size names:**
-
-- max. load/shelf
-- max. load/bed height
-- height under loft bed
-
-**Example of default measurements:**
-
-- in
-- ft
-- /inch2
-- lb
-- oz
