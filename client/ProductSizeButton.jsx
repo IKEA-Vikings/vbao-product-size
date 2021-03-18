@@ -1,6 +1,6 @@
 import React from 'react';
 
-function ProductSizeButton(props) {
+const ProductSizeButton = (props) => {
   return (
     <button className="chunky-header" type="button" onClick={props.handleClick}>
       <span className="chunky-header__title-wrapper">
