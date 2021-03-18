@@ -28,8 +28,8 @@ function ProductSizeModal(props) {
           className="close"
           onClick={props.toggleOverlay} >
           <svg className="svg-icon close" focusable="false" viewBox="0 0 100 100" >
-            <path d="M5 5 L95 95 Z" stroke="black" stroke-width="10" fill="none" />
-            <path d="M5 95 L95 5 Z" stroke="black" stroke-width="10" fill="none" />
+            <path d="M20 20 L80 80 Z" stroke="black" stroke-width="10" fill="none" />
+            <path d="M20 80 L80 20 Z" stroke="black" stroke-width="10" fill="none" />
           </svg>
         </button>
       </div>
