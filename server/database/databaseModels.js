@@ -9,6 +9,7 @@ const singleSizeSchema = new Schema({
 
 const productSizesSchema = new Schema({
   id: Number,
+  title: String,
   sizes: {
     type: [singleSizeSchema],
     default: undefined
