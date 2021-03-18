@@ -1,0 +1,130 @@
+:root {
+  --gray: #484848;
+  --white: #dfdfdf;
+  --overlay: rgba(72, 72, 72, 0.1);
+  --blue: #0058a3;
+  --laptop: 79.37em;
+  --large-tablet: 56.25em;
+  --small-tablet: 37.5em;
+  --mobile: 25.87em;
+  --small-mobile: 23.43em;
+  --font: 'Noto Sans', 'Roboto', 'Open Sans', sans-serif
+}
+
+.overlay {
+  display: none;
+  position: absolute;
+  background-color: var(--overlay);
+  height: 100%;
+  width: 100%;
+}
+
+.overlay.unhide {
+  display: block;
+}
+
+.product-info-section__button {
+  font-family: var(--font);
+}
+
+button.chunky-header {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  background: none;
+  overflow: hidden;
+  border-style: none;
+  border-top: 1px solid var(--white);
+  padding: 1.25rem 0;
+  width: 100%;
+  align-items: center;
+  max-height: 91px;
+  min-height: 5.625rem;
+  color: black;
+}
+
+button.chunky-header:focus, button.close {
+  outline:0;
+}
+
+.chunky-header__title-wrapper {
+  text-align: left;
+}
+
+.chunky-header__title {
+  color: black;
+  font-size: .875rem;
+  line-height: 1.57143;
+  font-weight: 700;
+}
+
+.svg-icon.chunky-header__icon {
+  display: inline-block;
+  height: 1.5rem;
+  width: 1.5rem;
+  vertical-align: middle;
+}
+
+.seo-content {
+  position: absolute;
+  height: 100%;
+  right: -100%;
+  top: 0;
+  border-radius: 7px;
+  background-color: white;
+  transition: right 0.5s ease;
+  font-size: .875rem;
+  padding: 1.5rem;
+  z-index: 99;
+}
+
+.seo-content.unhide {
+  right: 0;
+  transition: right 0.2s ease;
+}
+
+.seo-content__modal-header {
+  padding: 1.125rem;
+}
+
+button.close {
+  position: absolute;
+  border-style: none;
+  border-radius: 100px;
+  background-color: white;
+  width: 2.25rem;
+  height: 2.25rem;
+  right: 1.125rem;
+  top: 1.125rem;
+}
+
+button.close:hover {
+  background-color: var(--overlay)
+}
+
+.svg-icon.close {
+  height: 1.125rem;
+  width: 1.125rem;
+}
+
+.product-dimensions__title {
+  color: black;
+  font-size: 1.125rem;
+}
+
+.product-dimensions__list {
+  color: var(--gray);
+  margin-bottom: .5rem;
+}
+
+.product-dimensions__list-container {
+  display: flex;
+}
+
+.product-dimensions__list-item-name {
+  font-weight: 700;
+}
+
+.product-dimensions__list-item-measure {
+  margin: 2px;
+}
