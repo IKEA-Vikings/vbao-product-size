@@ -1,7 +1,6 @@
 const generateSeedData = () => {
   let data = [];
   const random = (min, max) => Math.floor(Math.random() * (max - min) + min);
-  const hasBonus = random(0, 2);
   const sizeSets = [
     [
       ['Length', 'inch'],
@@ -22,9 +21,10 @@ const generateSeedData = () => {
 
   for (let id = 1; id <= 100; id++) {
     let document = {};
-    let sizeType = random(-1, 2);
-    let sizingGroup = sizeSets[sizeType];
-    let numSizes = sizeType < 0 ? 0 : sizingGroup.length;
+    const hasBonus = random(0, 2);
+    const sizeType = random(-1, 2);
+    const sizingGroup = sizeSets[sizeType];
+    const numSizes = sizeType < 0 ? 0 : sizingGroup.length;
 
     for (let j = 0; j < numSizes ; j++) {
       let temp = {
