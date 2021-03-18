@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
-import ProductServicesButton from './ProductSizeButton.jsx';
-import ProductServicesModal from './ProductSizeModal.jsx';
+import ProductSizeButton from './ProductSizeButton.jsx';
+import ProductSizeModal from './ProductSizeModal.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -44,7 +44,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="product-info-section__button">
-        <ProductServicesModal
+        <ProductSizeModal
           sizes={this.state.data.sizes} 
           image={this.state.image} 
           toggleOverlay={this.toggleOverlay}
@@ -52,7 +52,7 @@ class App extends React.Component {
         <div
           className={this.state.overlay}
           onClick={this.toggleOverlay}></div>
-        <ProductServicesButton
+        <ProductSizeButton
           handleClick={this.toggleOverlay} />
       </div>
     );
