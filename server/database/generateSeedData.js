@@ -1,6 +1,6 @@
 const generateSeedData = () => {
   let data = [];
-  const random = (max) => Math.floor(Math.random() * Math.floor(max));
+  const random = (min, max) => Math.floor(Math.random() * (max - min) + min);
   const sizeSets = [
     [
       ['Length', 'inch'],
@@ -18,11 +18,11 @@ const generateSeedData = () => {
       ['Height', 'inch']
     ]
   ];
-  let hasBonus = random(2);
+  let hasBonus = random(0, 2);
 
   for (let id = 1; id <= 100; id++) {
     let document = {};
-    let sizeType = random(2);
+    let sizeType = random(0, 2);
     let sizingGroup = sizeSets[sizeType];
     let numSizes = sizingGroup.length;
 
@@ -32,7 +32,7 @@ const generateSeedData = () => {
       //Add name and unit to temp
       temp['unit'] = sizingGroup[j][1];
       //Pick random size, add to temp
-      temp['size'] = random(150);
+      temp['size'] = random(5, 150);
       //Push temp to document[sizes];
       if (document.sizes === undefined) {
         document.sizes = [];
@@ -42,14 +42,14 @@ const generateSeedData = () => {
 
     // Bonus sizing if exists
     if (hasBonus && document.sizes !== undefined) {
-      let sizeType = random(2);
-      let sizingGroup = sizeSet[3][sizeType];
+      let sizeType = random(0, 2);
+      let sizingGroup = sizeSet[2][sizeType];
       let temp = {};
       temp['name'] = sizingGroup[0];
       //Add name and unit to temp
       temp['unit'] = sizingGroup[1];
       //Pick random size, add to temp
-      temp['size'] = random(250);
+      temp['size'] = random(35, 250);
       document.sizes.push(temp);
     }
 
@@ -60,7 +60,7 @@ const generateSeedData = () => {
       document.title = `${length}x${width}"`;
     } else if (sizeType === 1) {
       let sizes = ['Twin', 'Single', 'Queen', 'King']
-      let title = random(5);
+      let title = random(0, 4);
       document.title = `${sizes[title]}`;;
     } else {
       document.title = '';
