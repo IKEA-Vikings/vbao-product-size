@@ -1,8 +1,7 @@
 import React from 'react';
 
-function ProductSizeModal(props) {
-  let sizes, image, isHidden;
-  sizes = !props.sizes
+const ProductSizeModal = (props) => {
+  const sizes = !props.sizes
     ? []
     : props.sizes.map((size) => {
       return (
@@ -16,8 +15,8 @@ function ProductSizeModal(props) {
         </div>
       );
     });
-  image = props.image;
-  isHidden = props.isHidden
+  const image = props.image;
+  const isHidden = props.isHidden
     ? "seo-content"
     : "seo-content unhide";
 
@@ -28,8 +27,8 @@ function ProductSizeModal(props) {
           className="close"
           onClick={props.toggleOverlay} >
           <svg className="svg-icon close" focusable="false" viewBox="0 0 100 100" >
-            <path d="M20 20 L80 80 Z" stroke="black" stroke-width="10" fill="none" />
-            <path d="M20 80 L80 20 Z" stroke="black" stroke-width="10" fill="none" />
+            <path d="M20 20 L80 80 Z" stroke="black" strokeWidth="10" fill="none" />
+            <path d="M20 80 L80 20 Z" stroke="black" strokeWidth="10" fill="none" />
           </svg>
         </button>
       </div>
