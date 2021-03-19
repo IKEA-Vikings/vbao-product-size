@@ -17,6 +17,7 @@
       "**/server/*.{js,jsx}",
       "**/server/database/*.{js,jsx}",
       "!**/node_modules/**",
+      "!**/server/server.js",
       "!**/server/database/seed.js"
     ]
   },
