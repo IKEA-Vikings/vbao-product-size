@@ -14,16 +14,23 @@ class App extends React.Component {
     this.state = {
       data: [],
       image: "",
-      overlay: "overlay"
+      overlay: "overlay",
+      id: window.location.href.split('/')[3]
     }
   }
 
   componentDidMount() {
-    axios.get('/api/sizes/1')
+    axios.get(`/api/sizes/${this.state.id}`)
       .then((res) => {
         this.setState({data: res.data});
       })
       .catch((err) => console.error(err));
+
+    axios.get(`http://localhost:3004/api/images/type/size/${this.state.id}`)
+      .then((res) => {
+        this.setState({image: res.data.sizeService});
+      })
+      .catch((err) => console.error(`ERROR FETCHING IMAGES\nError Number: ${err.errno} Error Code: ${err.code}`));
   }
 
   toggleOverlay(e) {
