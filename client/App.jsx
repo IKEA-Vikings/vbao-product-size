@@ -21,16 +21,9 @@ class App extends React.Component {
   componentDidMount() {
     axios.get('/api/sizes/1')
       .then((res) => {
-        console.log(res.data);
         this.setState({data: res.data});
       })
       .catch((err) => console.error(err));
-
-    axios.get('http://localhost:3004/api/images/type/size/1')
-    .then((res) => {
-      this.setState({image: res.data.sizeService});
-    })
-    .catch((err) => console.error(err));
   }
 
   toggleOverlay(e) {
