@@ -33,7 +33,7 @@
   "scripts": {
     "seed": "node ./server/database/seed.js",
     "test": "jest --no-cache --collect-coverage",
-    "start": "nodemon ./server/app.js",
+    "start": "nodemon ./server/server.js",
     "build": "webpack --watch"
   },
   "devDependencies": {
