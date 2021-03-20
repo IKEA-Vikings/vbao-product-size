@@ -30,7 +30,7 @@ class App extends React.Component {
       .then((res) => {
         this.setState({image: res.data.sizeService});
       })
-      .catch((err) => console.error(`ERROR FETCHING IMAGES\nError Number: ${err.errno} Error Code: ${err.code}`));
+      .catch((err) => console.error(err));
   }
 
   toggleOverlay(e) {
