@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import axios from 'axios';
 import ProductSizeButton from './ProductSizeButton.jsx';
 import ProductSizeModal from './ProductSizeModal.jsx';
+import './styles.css';
 
 class App extends React.Component {
   constructor(props) {
@@ -20,16 +21,9 @@ class App extends React.Component {
   componentDidMount() {
     axios.get('/api/sizes/1')
       .then((res) => {
-        console.log(res.data);
         this.setState({data: res.data});
       })
       .catch((err) => console.error(err));
-
-    axios.get('http://localhost:3004/api/images/type/size/1')
-    .then((res) => {
-      this.setState({image: res.data.sizeService});
-    })
-    .catch((err) => console.error(err));
   }
 
   toggleOverlay(e) {
@@ -45,8 +39,8 @@ class App extends React.Component {
     return (
       <div className="product-info-section__button">
         <ProductSizeModal
-          sizes={this.state.data.sizes} 
-          image={this.state.image} 
+          sizes={this.state.data.sizes}
+          image={this.state.image}
           toggleOverlay={this.toggleOverlay}
           isHidden={this.state.overlay === "overlay"} />
         <div

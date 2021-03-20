@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const axios = require('axios');
 const cors = require('cors');
 const db = require('./database/database.js');
 
@@ -16,6 +17,12 @@ app.get('/api/sizes/:id', cors(corsOptions), (req, res) => {
       res.send(result);
     })
     .catch((err) => console.error(err));
+
+  axios.get(`http://localhost:3004/api/images/type/size/${req.params.id}`)
+  .then((res) => {
+    this.setState({image: res.data.sizeService});
+  })
+  .catch((err) => console.error(err));
 });
 
 module.exports = app;
