@@ -130,3 +130,7 @@ button.close:hover {
 .product-dimensions__list-item-measure {
   margin: 2px;
 }
+
+.product-dimensions__image {
+  width: 350px;
+}

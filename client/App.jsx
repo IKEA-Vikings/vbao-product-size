@@ -26,9 +26,10 @@ class App extends React.Component {
       })
       .catch((err) => console.error(err));
 
-    axios.get(`http://localhost:3004/api/images/type/size/${this.state.id}`)
+    //Temporary image endpoint. Service endpoint does not appear to be ready yet.
+    axios.get(`http://localhost:3004/images/org/${this.state.id}`)
       .then((res) => {
-        this.setState({image: res.data.sizeService});
+        this.setState({image: res.data[0]});
       })
       .catch((err) => console.error(err));
   }

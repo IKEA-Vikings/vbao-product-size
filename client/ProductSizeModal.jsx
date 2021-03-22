@@ -36,12 +36,9 @@ const ProductSizeModal = (props) => {
         <h2 className="product-dimensions__title">
           Product Size
         </h2>
-        <div className="product-dimensions-content__image">
-          <div className="product-dimensions__image-container">
-            <span className="aspect-ratio-image aspect-ratio-image__square">
-              {image}
-            </span>
-          </div>
+        <div className="product-dimensions__image-container">
+          <img src={image} alt="Image of item"
+            className="product-dimensions__image" />
         </div>
         <dl className="product-dimensions__list">
           {sizes}
