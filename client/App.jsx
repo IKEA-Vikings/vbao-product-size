@@ -20,7 +20,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    axios.get(`/api/sizes/${this.state.id}`)
+    axios.get(`http://localhost:3002/api/sizes/${this.state.id}`)
       .then((res) => {
         this.setState({data: res.data});
       })
