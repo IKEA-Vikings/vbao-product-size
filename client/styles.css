@@ -13,12 +13,11 @@
 
 .overlay {
   display: none;
-  position: absolute;
+  position: fixed;
   background-color: var(--overlay);
   top:0;
-  left: 0;
-  right: 0;
   bottom: 0;
+  width: 100%
 }
 
 .overlay.unhide {
@@ -68,7 +67,7 @@ button.chunky-header:focus, button.close {
 }
 
 .seo-content {
-  position: absolute;
+  position: fixed;
   height: 100%;
   right: -100%;
   top: 0;
