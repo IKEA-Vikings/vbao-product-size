@@ -26,3 +26,4 @@ dist/
 
 # Others
 /public/bundle.js
+/__tests__/__snapshots__
