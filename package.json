@@ -8,7 +8,7 @@
     "node": ">=6.13.0"
   },
   "jest": {
-    "testEnvironment": "node",
+    "testEnvironment": "jsdom",
     "preset": "@shelf/jest-mongodb",
     "coveragePathIgnorePatterns": [
       "/node_modules/"
@@ -19,6 +19,7 @@
     "collectCoverageFrom": [
       "**/server/*.{js,jsx}",
       "**/server/database/*.{js,jsx}",
+      "**/client/ProductSize*.jsx",
       "!**/node_modules/**",
       "!**/server/server.js",
       "!**/server/database/seed.js"
@@ -38,7 +39,7 @@
   },
   "scripts": {
     "seed": "node ./server/database/seed.js",
-    "test": "jest --no-cache --collect-coverage",
+    "test": "jest --no-cache -u --collect-coverage",
     "start": "nodemon ./server/server.js",
     "build": "webpack --watch"
   },
