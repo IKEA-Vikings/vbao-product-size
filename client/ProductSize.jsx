@@ -24,9 +24,9 @@ class ProductSize extends React.Component {
       });
 
     //Temporary image endpoint. Service endpoint does not appear to be ready yet.
-    axios.get(`http://localhost:3004/images/org/${this.state.id}`)
+    axios.get(`http://localhost:3004//images/sizeService/${this.state.id}`)
       .then((res) => {
-        this.setState({image: res.data[0]});
+        this.setState({image: res.data});
       });
   }
 
