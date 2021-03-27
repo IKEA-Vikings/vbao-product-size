@@ -7,9 +7,6 @@ module.exports = {
     path: path.resolve(__dirname, 'public'),
     filename: 'bundle.js'
   },
-  moduleNameMapper: {
-    "\\.css$": "identity-obj-proxy",
-  },
   module: {
     rules: [
       {

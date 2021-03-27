@@ -9,6 +9,7 @@
   },
   "jest": {
     "testEnvironment": "jsdom",
+    "clearMocks": true,
     "preset": "@shelf/jest-mongodb",
     "coveragePathIgnorePatterns": [
       "/node_modules/"
