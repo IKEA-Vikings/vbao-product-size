@@ -28,11 +28,11 @@ describe('ProductSize Service Components', () => {
     expect(component.instance().state.overlay).toBe('overlay');
   });
 
-  it('should update state after componentDidMount', () => {
+  it('componentDidMount makes API calls', () => {
     const spy = jest.spyOn(axios, 'get');
     expect(spy).toHaveBeenCalledTimes(0);
 
-    const component = mount(<ProductSize />);
+    const component = shallow(<ProductSize />);
     expect(spy).toHaveBeenCalledTimes(2);
   });
 });
