@@ -1,0 +1,16 @@
+version: "3.9"
+services:
+  web:
+    build: .
+    ports:
+      - "3002:3002"
+    depends_on:
+      - mongo
+    environment:
+      - DB_HOST_ENV=docker
+    command: npm run seed
+    command: npm start
+  mongo:
+    image: mongo
+    ports:
+      - "27017:27017"
