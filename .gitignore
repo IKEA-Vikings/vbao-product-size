@@ -26,3 +26,5 @@ dist/
 
 # Others
 /public/bundle.js
+/__tests__/__snapshots__
+globalConfig.json
