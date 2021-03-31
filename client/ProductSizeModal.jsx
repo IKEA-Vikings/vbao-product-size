@@ -15,7 +15,10 @@ const ProductSizeModal = (props) => {
         </div>
       );
     });
-  const image = props.image;
+
+  const image = props.image
+    ? <img src={props.image} alt="Image of item" className="product-dimensions__image" />
+    : '';
   const isHidden = props.isHidden
     ? "seo-content"
     : "seo-content unhide";
@@ -37,8 +40,7 @@ const ProductSizeModal = (props) => {
           Product Size
         </h2>
         <div className="product-dimensions__image-container">
-          <img src={image} alt="Image of item"
-            className="product-dimensions__image" />
+          {image}
         </div>
         <dl className="product-dimensions__list">
           {sizes}
