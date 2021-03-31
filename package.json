@@ -42,7 +42,7 @@
     "seed": "node ./server/database/seed.js",
     "test": "jest --no-cache -u --collect-coverage",
     "start": "nodemon ./server/server.js",
-    "build": "webpack --watch --host 0.0.0.0"
+    "build": "webpack --watch"
   },
   "devDependencies": {
     "@babel/core": "^7.13.8",
