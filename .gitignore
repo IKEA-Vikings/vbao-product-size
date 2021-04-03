@@ -28,4 +28,7 @@ dist/
 /public/bundle.js
 /__tests__/__snapshots__
 globalConfig.json
-.env
+login.sh
+*.env
+*.pem
+*.cer

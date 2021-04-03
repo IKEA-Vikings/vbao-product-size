@@ -8,6 +8,8 @@ services:
       - mongo
     environment:
       - DB_HOST_ENV=docker
+    volumes:
+      - /usr/src/app/node_modules
     command: npm run seed
     command: npm start
   mongo:

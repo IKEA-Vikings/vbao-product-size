@@ -1,3 +1,5 @@
-.git
-.env
+globalConfig.json
 node_modules
+*.env
+*.pem
+*.git
