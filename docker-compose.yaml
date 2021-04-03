@@ -1,7 +1,8 @@
 version: "3.9"
 services:
   web:
-    image: vbao/hr-fec-product-size
+    build: .
+    # image: vbao/hr-fec-product-size
     ports:
       - "3002:3002"
     depends_on:
