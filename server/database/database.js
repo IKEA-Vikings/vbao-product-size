@@ -3,7 +3,7 @@ const Promise = require('bluebird');
 const mongoose = require('mongoose');
 const models = require('./databaseModels');
 const dbname = process.env.NODE_ENV === 'test' ? 'ikea-test' : 'ikea';
-const host = process.env.DB_HOST_ENV === 'docker' ? 'mongo:27017' : 'localhost';
+const host = process.env.DB_HOST_ENV === 'docker' ? 'mongo:27017' : '0.0.0.0';
 const productSizes = models.productSizes;
 const singleSize = models.singleSize;
 
