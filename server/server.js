@@ -1,5 +1,5 @@
-process.env.NODE_ENV = 'dev';
+require('dotenv').config();
 const app = require('./app.js');
-const PORT = 3002;
+const host_productSize = process.env.HOST_PRODUCT_SIZE ? process.env.HOST_PRODUCT_SIZE : 'localhost';
 
-app.listen(PORT, console.log(`Listening on http://localhost:${PORT}`));
+app.listen(process.env.PORT, console.log(`Listening on http://${host_productSize}:${process.env.PORT}`));
