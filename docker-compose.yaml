@@ -8,6 +8,11 @@ services:
       - mongo
     env_file:
       - .env
+    environment:
+      - PORT=${PORT}
+      - NODE_ENV=${NODE_ENV}
+      - HOST_PRODUCT_SIZE=${HOST_PRODUCT_SIZE}
+      - DB_HOST_ENV=${DB_HOST_ENV}
     volumes:
       - /usr/src/app/node_modules
     command: npm start
