@@ -23,7 +23,7 @@ class ProductSize extends React.Component {
         this.setState({data: res.data});
       });
 
-    axios.get(`http://54.67.28.46:4004/images/sizeService/${this.state.id}`)
+    axios.get(`http://54.67.28.46:3004/images/sizeService/${this.state.id}`)
       .then((res) => {
         this.setState({image: res.data});
       });
