@@ -4,6 +4,7 @@ services:
     build: .
     ports:
       - "3002:3002"
+    restart: always
     depends_on:
       - mongo
     env_file:
@@ -20,5 +21,6 @@ services:
     image: mongo
     ports:
       - "27017:27017"
+    restart: always
     volumes:
       - ./db/src/app/fec
