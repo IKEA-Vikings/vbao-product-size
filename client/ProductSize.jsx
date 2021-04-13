@@ -1,7 +1,7 @@
-import React from 'react';
+import React, {lazy, Suspense} from 'react';
 import axios from 'axios';
 import ProductSizeButton from './ProductSizeButton.jsx';
-import ProductSizeModal from './ProductSizeModal.jsx';
+const ProductSizeModal = lazy(() => import('./ProductSizeModal.jsx'));
 
 class ProductSize extends React.Component {
   constructor(props) {
@@ -41,11 +41,13 @@ class ProductSize extends React.Component {
   render() {
     return (
       <div className="product-info-section__button">
-        <ProductSizeModal
-          sizes={this.state.data.sizes}
-          image={this.state.image}
-          toggleOverlay={this.toggleOverlay}
-          isHidden={this.state.overlay === "overlay"} />
+        <Suspense fallback={<p>loading...</p>}>
+          <ProductSizeModal
+            sizes={this.state.data.sizes}
+            image={this.state.image}
+            toggleOverlay={this.toggleOverlay}
+            isHidden={this.state.overlay === "overlay"} />
+        </Suspense>
         <div
           className={this.state.overlay}
           onClick={this.toggleOverlay}></div>
