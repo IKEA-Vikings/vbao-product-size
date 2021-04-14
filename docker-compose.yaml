@@ -20,7 +20,7 @@ services:
   mongo:
     image: mongo
     ports:
-      - "27017:27017"
+      - "27017:4000"
     restart: always
     volumes:
       - ./db/src/app/fec
