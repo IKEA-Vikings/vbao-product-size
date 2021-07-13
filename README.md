@@ -23,7 +23,7 @@ A clone of Ikea's item details page. This repo is a module of the "Product Size"
 
 ## Usage
 
-This repo provides front-end components for the Product Size module of Ikea's item detail page. Provides API to the Product Size service, and makes a GET request to the About service. A placeholder database is in place using MongoDB.
+This repo provides front-end components for the Product Size module of Ikea's item detail page. Provides API to the Product Size service, and makes a GET request to the Images service to populate images. And it is used by the About service. A placeholder database is in place using MongoDB.
 
 This app can be run locally and can also be deployed via Docker. A Docker-compose file is provided to deploy with a Docker image of MongoDB.
 
