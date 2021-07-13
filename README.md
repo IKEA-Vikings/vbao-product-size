@@ -1,32 +1,98 @@
 # Vikea
 
-A mock-up of Ikea's item details page. This repo is a module of the "Product Size" section.
+A clone of Ikea's item details page. This repo is a module of the "Product Size" section, functioning as a service. It contains its own server and database.
+
+![Screenshot of the Product Size service](https://vbao-readme-screenshots.s3.us-west-1.amazonaws.com/fec_product-size_screenshot.png)
 
 ## Related Projects
 
-  - https://github.com/IKEA-Vikings/josh-service-reviews
-  - https://github.com/IKEA-Vikings/vbao-others-also-viewed
-  - https://github.com/IKEA-Vikings/phucci-service-1
-  - https://github.com/IKEA-Vikings/kim-service-1
+- [About Service](https://github.com/IKEA-Vikings/kim-service-1)
+- [Images Service](https://github.com/IKEA-Vikings/phucci-service-1)
+- [Others Also Viewed Service](https://github.com/IKEA-Vikings/vbao-others-also-viewed)
+- [Proxy](https://github.com/IKEA-Vikings/vbao-proxy)
+- [Reviews Service](https://github.com/IKEA-Vikings/josh-service-reviews)
 
 ## Table of Contents
 
 1. [Usage](#usage)
 1. [Requirements](#requirements)
-1. [Development](#development)
 1. [API](#api)
 1. [Database](#database)
+1. [Development](#development)
+1. [Deployment](#deployment)
 
 ## Usage
 
-This repo provides front end components for the Product Size module of Ikea's item detail page. Includes API to the product size service.
+This repo provides front-end components for the Product Size module of Ikea's item detail page. Provides API to the Product Size service, and makes a GET request to the About service. A placeholder database is in place using MongoDB.
+
+This app can be run locally and can also be deployed via Docker. A Docker-compose file is provided to deploy with a Docker image of MongoDB.
 
 ## Requirements
 
 An `nvmrc` file is included if using [nvm](https://github.com/creationix/nvm).
 
-- Node 6.13.0
+- Node
+- Webpack/Webpack-CLI
 - MongoDB `mongodb-community@4.4`
+- Docker
+
+## API
+
+API                  | Description
+---------------------|---------------------------
+`GET /api/sizes/:id` | Retrieves product's sizes.
+
+### Request/Response
+
+```javascript
+/* Sample Request */
+$.get('api/sizes/1', (data) => { ... });
+
+/* Sample Response */
+{
+  id: 1,
+  title: '45x25"'
+  sizes: [
+    {
+      name: 'Height',
+      size: '45',
+      unit: 'in'
+    },
+    {
+      name: 'Width',
+      size: '25',
+      unit: 'in'
+    },
+    {
+      name: 'Max. load',
+      size: '200',
+      unit: 'lb'
+    }
+  ]
+}
+```
+
+## Database
+
+Schema utilizing mongoDB via Mongoose
+
+```javascript
+
+const singleSize = new Schema({
+  name: String,
+  size: String,
+  unit: String
+});
+
+const productSizes = new Schema({
+  id: Number,
+  title: String,
+  sizes: {
+    type: [singleSize],
+    default: undefined
+  }
+});
+```
 
 ## Development
 
@@ -87,62 +153,45 @@ In a separate terminal window, from within the root directory:
 npm run test
 ```
 
-## API
+## Deployment
 
-API               | Description
-------------------|----------------------------------------------
-**Functionality** | Retrieves product's sizes.
-**Endpoint/Path** | `api/sizes/:id`
-**Verb**          | GET
+The repo can be deployed directly using Node within an AWS EC2 instance, or deployed via Docker.
 
-### Request/Response
+### Docker Deployment
 
-```javascript
-/* Sample Request */
-$.get('api/sizes/1', (data) => { ... });
+Navigate to the folder that contains the `Dockerfile`. Build the docker image:
 
-/* Sample Response */
-{
-  id: 1,
-  title: '45x25"'
-  sizes: [
-    {
-      name: 'Height',
-      size: '45',
-      unit: 'in'
-    },
-    {
-      name: 'Width',
-      size: '25',
-      unit: 'in'
-    },
-    {
-      name: 'Max. load',
-      size: '200',
-      unit: 'lb'
-    }
-  ]
-}
+`docker build -t <app_name> .`
+
+View existing Docker images to check the image creation was successful:
+
+`docker images`
+
+Then we run the app.
+
+`docker run -p <port>:3003 -d <app_name>`
+
+Running containers can be viewed:
+
+`docker ps`
+
+And containers can be stopped:
+
+`docker stop <container id>`
+
+### Docker-compose Deployment
+
+Navigate to the folder with `docker-compose.yaml` file.
+
+```bash
+docker-compose build --no-cache
+docker-compose up
 ```
 
-## Database
+This will read the `docker-compose.yaml` file and build the app. Both the app (client + server) and the MongoDB image (database). `--no-cache` should help with updating the docker-compose file. Otherwise, subsequent updates may not be reflected in what is served via Docker.
 
-Schema utilizing mongoDB via Mongoose
+Alternatively, `docker-compose up -d` with start and run the containers in the background.
 
-```javascript
+Use `docker-compose ps` to check what containers are currently running.
 
-const singleSize = new Schema({
-  name: String,
-  size: String,
-  unit: String
-});
-
-const productSizes = new Schema({
-  id: Number,
-  title: String,
-  sizes: {
-    type: [singleSize],
-    default: undefined
-  }
-});
-```
+`docker-compose stop` will stop the container, while `docker-compose down -v` will stop the container and also remove the container and its volumes.
