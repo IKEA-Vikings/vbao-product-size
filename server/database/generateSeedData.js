@@ -39,7 +39,6 @@ const generateSeedData = () => {
       document.sizes.push(temp);
     }
 
-    // Bonus sizing if exists
     if (hasBonus && document.sizes) {
       const sizeType = random(0, 2);
       const sizingGroup = sizeSets[2][sizeType];
@@ -51,7 +50,6 @@ const generateSeedData = () => {
       document.sizes.push(temp);
     }
 
-    // Generate title
     if (sizeType === 0) {
       let length = document.sizes[0].size;
       let width = document.sizes[1].size;
@@ -64,7 +62,6 @@ const generateSeedData = () => {
       document.title = '';
     }
 
-    //push document to data
     document.id = id;
     data.push(document);
   }

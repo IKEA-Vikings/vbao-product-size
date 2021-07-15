@@ -3,8 +3,6 @@ const db = require('./database.js');
 const models = require('./databaseModels.js');
 const generateSeedData = require('./generateSeedData.js');
 
-
-/* Data Insertion */
 models.productSizes.deleteMany();
 let data = generateSeedData();
 db.setProductSizesAsync(data)
